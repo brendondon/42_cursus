@@ -14,13 +14,13 @@
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	unsigned char	*new;
-	size_t			i;
+	void	*new;
+	size_t	i;
 
 	i = 0;
-	new = (unsigned char *)malloc(nmemb * size);
-	if (!new)
-		return (NULL);
-	ft_bzero(new, size);
+	new = (void *)malloc(nmemb * size);
+	if (new == NULL)
+		return (new);
+	ft_bzero(new, size * nmemb);
 	return (new);
 }

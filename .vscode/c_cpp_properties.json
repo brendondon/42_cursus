@@ -8,7 +8,7 @@
             "defines": [],
             "cStandard": "c17",
             "cppStandard": "gnu++17",
-            "compilerPath": "C:/msys64/ucrt64/bin/gcc.exe"
+            "compilerPath": "/usr/bin/gcc"
         }
     ],
     "version": 4

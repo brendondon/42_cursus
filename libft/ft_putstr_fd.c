@@ -6,13 +6,13 @@
 /*   By: breda-si <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:13:03 by breda-si          #+#    #+#             */
-/*   Updated: 2023/10/05 17:15:01 by breda-si         ###   ########.fr       */
+/*   Updated: 2023/10/05 18:30:41 by breda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd(char *s, int fd)
 {
 	size_t	i;
 
