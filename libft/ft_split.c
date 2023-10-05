@@ -6,7 +6,7 @@
 /*   By: breda-si <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:14:49 by marvin            #+#    #+#             */
-/*   Updated: 2023/10/05 11:01:58 by breda-si         ###   ########.fr       */
+/*   Updated: 2023/10/05 11:38:56 by breda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 size_t	cont_w(char const *s, char c)
 {
-	int i;
-	size_t count;
+	int		i;
+	size_t	count;
 
 	count = 0;
 	i = 0;
@@ -35,14 +35,15 @@ size_t	cont_w(char const *s, char c)
 
 char	**ft_split(char const *s, char c)
 {
-	char **new;
-	size_t v;
-	size_t i;
-	size_t j;
+	char	**new;
+	size_t	v;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	v = 0;
-	if (!(new = (char **)malloc(sizeof(char *) * cont_w(s, c) + 1)))
+	new = (char **)malloc(sizeof(char *) * cont_w(s, c) + 1);
+	if (!new)
 		return (NULL);
 	while (s[i])
 	{

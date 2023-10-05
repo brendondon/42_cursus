@@ -6,7 +6,7 @@
 /*   By: breda-si <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 23:41:18 by marvin            #+#    #+#             */
-/*   Updated: 2023/10/05 11:03:56 by breda-si         ###   ########.fr       */
+/*   Updated: 2023/10/05 11:39:37 by breda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_isset(char c, char const *set)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (set[i])
@@ -28,10 +28,10 @@ int	ft_isset(char c, char const *set)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char *new;
-	size_t end;
-	size_t start;
-	size_t len;
+	char	*new;
+	size_t	end;
+	size_t	start;
+	size_t	len;
 
 	start = 0;
 	end = ft_strlen(s1);
