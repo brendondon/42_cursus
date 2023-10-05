@@ -6,13 +6,13 @@
 /*   By: breda-si <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:14:49 by marvin            #+#    #+#             */
-/*   Updated: 2023/10/05 10:50:44 by breda-si         ###   ########.fr       */
+/*   Updated: 2023/10/05 11:01:58 by breda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t cont_w(char const *s, char c)
+size_t	cont_w(char const *s, char c)
 {
 	int i;
 	size_t count;
@@ -33,7 +33,7 @@ size_t cont_w(char const *s, char c)
 	return (count);
 }
 
-char **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char **new;
 	size_t v;
