@@ -6,7 +6,7 @@
 /*   By: breda-si <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:10:11 by breda-si          #+#    #+#             */
-/*   Updated: 2023/10/05 15:33:55 by breda-si         ###   ########.fr       */
+/*   Updated: 2023/10/05 15:38:49 by breda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	{
 		new[i] = (*f)(i, s[i]);
 	}
-	return (s);
+	return (new);
 }
