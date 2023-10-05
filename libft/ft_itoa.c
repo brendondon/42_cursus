@@ -12,9 +12,9 @@
 
 #include "libft.h"
 
-size_t cont_int(int n)
+size_t	cont_int(int n)
 {
-	size_t cont;
+	size_t	cont;
 
 	cont = 0;
 	if (n == -2147483647)
@@ -34,34 +34,20 @@ size_t cont_int(int n)
 			n = n / 10;
 		}
 	}
-	return (cont+1);
+	return (cont + 1);
 }
 
-
-
-char *ft_itoa(int n)
+void	fill_wint(char *new, int n, int len)
 {
-	char *new;
-	size_t i;
-	size_t len;
+	size_t	i;
 
-	len = cont_int(n);
 	i = len;
-	if (!(new = (char *)ft_calloc (sizeof(char), len + 1)))
-		return (NULL);
-	if (n == -2147483647)
-	{
-		n = 147483647;
-		new[0] = '-';
-		new[1] = '2';
-		len = len - 2;
-	}
 	if (n < 0)
 	{
 		new[i] = '-';
 		n = n * (-1);
 		len = len - 1;
-	}	
+	}
 	while (len > 1)
 	{
 		new[i] = n % 10 + '0';
@@ -70,5 +56,19 @@ char *ft_itoa(int n)
 		len--;
 	}
 	new[i] = n + '0';
-	return (new);	
+}
+
+char	*ft_itoa(int n)
+{
+	char	*new;
+	size_t	len;
+
+	len = cont_int(n);
+	new = (char *)ft_calloc(sizeof(char), len + 1);
+	if (!new)
+		return (NULL);
+	if (n == -2147483647)
+		return (ft_strdup("-2147483647"));
+	fill_wint(new, n, len);
+	return (new);
 }
