@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: breda-si <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:14:49 by marvin            #+#    #+#             */
-/*   Updated: 2023/10/04 21:14:49 by marvin           ###   ########.fr       */
+/*   Updated: 2023/10/05 10:50:44 by breda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ char **ft_split(char const *s, char c)
 		j = 0;
 		while (s[i + j] != c && s[i + j])
 			j++;
-		if(j > 0)
+		if (j > 0)
 		{
 			new[v] = ft_substr(s, i, j);
 			v++;
 		}
-		i = i + j + 1;		
+		i = i + j + 1;
 	}
 	new[v] = NULL;
-	return(new);
+	return (new);
 }

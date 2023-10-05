@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: breda-si <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 23:41:18 by marvin            #+#    #+#             */
-/*   Updated: 2023/10/03 23:41:18 by marvin           ###   ########.fr       */
+/*   Updated: 2023/10/05 10:55:06 by breda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int ft_isset(char c, char const *set)
 	int i;
 
 	i = 0;
-	while(set[i])
+	while (set[i])
 	{
 		if (c == set[i])
-			return(1);
+			return (1);
 		i++;
 	}
-	return(0);
+	return (0);
 }
 
 char *ft_strtrim(char const *s1, char const *set)
