@@ -18,10 +18,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	size;
 
 	size = ft_strlen(s1) + ft_strlen(s2) + 1;
-	new = (char *)ft_calloc(size + 1, sizeof(char));
+	new = (char *)ft_calloc(sizeof(char), size);
 	if (!new)
 		return (NULL);
 	ft_memcpy(new, s1, ft_strlen(s1));
-	ft_strlcat(new, s2, size);
+	ft_strlcat(new, s2, size + 1);
 	return (new);
 }

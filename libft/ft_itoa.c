@@ -44,11 +44,11 @@ void	fill_wint(char *new, int n, int len)
 	i = len;
 	if (n < 0)
 	{
-		new[i] = '-';
+		new[0] = '-';
 		n = n * (-1);
 		len = len - 1;
 	}
-	while (len > 1)
+	while (len > 0)
 	{
 		new[i] = n % 10 + '0';
 		n = n / 10;
@@ -64,11 +64,11 @@ char	*ft_itoa(int n)
 	size_t	len;
 
 	len = cont_int(n);
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
 	new = (char *)ft_calloc(sizeof(char), len + 1);
 	if (!new)
 		return (NULL);
-	if (n == -2147483647)
-		return (ft_strdup("-2147483647"));
-	fill_wint(new, n, len);
+	fill_wint(new, n, len - 1);
 	return (new);
 }
