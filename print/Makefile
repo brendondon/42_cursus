@@ -18,8 +18,9 @@ CFLAGS = -Wall -Werror -Wextra
 
 SRCS = ft_printf.o
 
-%o
-
+%.o : %.c 
+	$(CC) $(CFLAGS) -c $< -o $@
+	
 all: $(NAME)
 
 $(NAME): $(SRCS)
