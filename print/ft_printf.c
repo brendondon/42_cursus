@@ -15,13 +15,6 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-/*typedef struct s_dados
-{
-	int	count;
-	long int	nbr;
-	unsigned char *base;
-}	t_dados;*/
-
 void ft_putchar(char c, t_dados *data)
 {
 	write(1, &c, 1);
