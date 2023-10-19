@@ -25,8 +25,6 @@ typedef struct s_dados
 	long long		nbr;
 
 }	t_dados;
-
-
-int ft_printf(const char *, ...);
+int	ft_printf(const char *abc, ...);
 
 #endif
