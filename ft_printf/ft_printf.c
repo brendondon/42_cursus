@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: breda-si <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 19:59:43 by marvin            #+#    #+#             */
-/*   Updated: 2023/10/10 19:59:43 by marvin           ###   ########.fr       */
+/*   Updated: 2023/10/19 22:44:27 by breda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	ft_putstr(char *str, t_dados *data)
 		ft_putchar(str[i++], data);
 }
 
-void	ft_nbrbase(long long nb, t_dados *data)
-{
+void	ft_nbrbase(long long int nb, t_dados *data)
+{	
 	data->base = "0123456789abcdf";
 	if (data->flag == 'x' || data->flag == 'p')
 	{
@@ -45,18 +45,23 @@ void	ft_nbrbase(long long nb, t_dados *data)
 		data->base = "0123456789ABCDEF";
 	}
 	if (data->flag == 'i' || data->flag == 'd' || data->flag == 'u')
-		data->nbase = 10;
-	if (nb >= data->nbase)
 	{
-		ft_nbrbase(nb / data->nbase, data);
+		data->nbase = 10;
+		if (nb < 0)
+		{
+			ft_putchar('-',data);
+			nb *= -1;
+		}
 	}
+	if (nb >= data->nbase)
+		ft_nbrbase(nb / data->nbase, data);
 	ft_putchar(data->base[nb % data->nbase], data);
 }
 
 void	ft_flags(const char *str, va_list arg, t_dados *data)
 {
 	data->flag = *str;
-	if (*str == 'c' || *str == '%')
+	if (*str == 'c')
 		ft_putchar(va_arg(arg, int), data);
 	else if (*str == 's')
 		ft_putstr(va_arg(arg, char *), data);
@@ -72,8 +77,10 @@ void	ft_flags(const char *str, va_list arg, t_dados *data)
 	}
 	else if (*str == 'p')
 	{
+		data->nbr = va_arg(arg, unsigned long);
+		if(data->nbr == 0)
+			return (ft_putstr("(nil)", data));
 		ft_putstr("0x", data);
-		data->nbr = va_arg(arg, long);
 		ft_nbrbase(data->nbr, data);
 	}
 }
@@ -88,34 +95,22 @@ int	ft_printf(const char *abc, ...)
 	data.count = 0;
 	while (*abc)
 	{
-		if (*abc == '%')
-		{
-			abc++;
-			ft_flags(abc, argss, &data);
-			abc++;
-		}
-		else
-			ft_putchar(*abc++, &data);
+		if (*(abc+1) == '%' && *abc == '%')
+			ft_putchar(*(++abc), &data);
+		else if (*abc == '%' && *(abc + 1) != '%')
+			ft_flags(++abc, argss, &data);
+		else if(*abc != '%')
+			ft_putchar(*abc, &data);
+		abc++;
 	}
 	va_end(argss);
 	return (data.count);
 }
-/*
+
+#include<limits.h>
+
 int main(int argc, char const *argv[])
 {
-	int a;
-	void *b;
-	int *c;
-	int *d;
-
-	d = malloc(sizeof(int)*2);
-	d[0] = a;
-	b = (void *)d;
-	c = &b;
-	a = ft_printf("%c %s %d\n %p\n",'A', "boraa", 30000000000000000, d);
-	printf("%d\n", 30000000000000000);
-	printf("%p\n", c) ;
-	printf("%p\n", b) ;
-	free(d);
-	return 0;
-}*/
+	ft_printf(" %p \n", ULONG_MAX);
+	printf(" %lu \n", ULONG_MAX);
+}
