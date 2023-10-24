@@ -31,7 +31,7 @@ void	ft_putstr(char *str, t_dados *data)
 		ft_putchar(str[i++], data);
 }
 
-void	ft_nbrbase(long long int nb, t_dados *data)
+void	ft_nbrbase(unsigned long nb, t_dados *data)
 {	
 	data->base = "0123456789abcdf";
 	if (data->flag == 'x' || data->flag == 'p')
@@ -45,14 +45,7 @@ void	ft_nbrbase(long long int nb, t_dados *data)
 		data->base = "0123456789ABCDEF";
 	}
 	if (data->flag == 'i' || data->flag == 'd' || data->flag == 'u')
-	{
 		data->nbase = 10;
-		if (nb < 0)
-		{
-			ft_putchar('-',data);
-			nb *= -1;
-		}
-	}
 	if (nb >= data->nbase)
 		ft_nbrbase(nb / data->nbase, data);
 	ft_putchar(data->base[nb % data->nbase], data);
@@ -68,6 +61,11 @@ void	ft_flags(const char *str, va_list arg, t_dados *data)
 	else if (*str == 'd' || *str == 'i')
 	{
 		data->nbr = va_arg(arg, int);
+		if(data->nbr < 0)
+		{
+			ft_putchar('-', data);
+			data->nbr *= -1;
+		}
 		ft_nbrbase(data->nbr, data);
 	}
 	else if (*str == 'u' || *str == 'x' || *str == 'X')
@@ -77,7 +75,7 @@ void	ft_flags(const char *str, va_list arg, t_dados *data)
 	}
 	else if (*str == 'p')
 	{
-		data->nbr = va_arg(arg, unsigned long);
+		data->nbr = va_arg(arg, long);
 		if(data->nbr == 0)
 			return (ft_putstr("(nil)", data));
 		ft_putstr("0x", data);
@@ -111,6 +109,6 @@ int	ft_printf(const char *abc, ...)
 
 int main(int argc, char const *argv[])
 {
-	ft_printf(" %p \n", ULONG_MAX);
-	printf(" %lu \n", ULONG_MAX);
+	ft_printf(" %p \n", -LONG_MAX);
+	printf(" %p \n", -LONG_MAX);
 }

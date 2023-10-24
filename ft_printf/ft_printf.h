@@ -22,7 +22,7 @@ typedef struct s_dados
 	int				nbase;
 	char			*base;
 	char			flag;
-	long long		nbr;
+	long			nbr;
 
 }	t_dados;
 int	ft_printf(const char *abc, ...);
