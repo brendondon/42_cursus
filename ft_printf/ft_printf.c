@@ -6,7 +6,7 @@
 /*   By: breda-si <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 19:59:43 by marvin            #+#    #+#             */
-/*   Updated: 2023/10/19 22:44:27 by breda-si         ###   ########.fr       */
+/*   Updated: 2023/10/26 17:10:51 by breda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,19 @@ void	ft_putstr(char *str, t_dados *data)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (ft_putstr("(null)", data));
 	while (str[i])
 		ft_putchar(str[i++], data);
 }
 
 void	ft_nbrbase(unsigned long nb, t_dados *data)
-{	
+{
 	data->base = "0123456789abcdf";
 	if (data->flag == 'x' || data->flag == 'p')
 	{
+		if (data->flag == 'p' && nb == (unsigned long)data->nbr)
+			ft_putstr("0x", data);
 		data->nbase = 16;
 		data->base = "0123456789abcdef";
 	}
@@ -61,7 +65,7 @@ void	ft_flags(const char *str, va_list arg, t_dados *data)
 	else if (*str == 'd' || *str == 'i')
 	{
 		data->nbr = va_arg(arg, int);
-		if(data->nbr < 0)
+		if (data->nbr < 0)
 		{
 			ft_putchar('-', data);
 			data->nbr *= -1;
@@ -69,16 +73,12 @@ void	ft_flags(const char *str, va_list arg, t_dados *data)
 		ft_nbrbase(data->nbr, data);
 	}
 	else if (*str == 'u' || *str == 'x' || *str == 'X')
-	{
-		data->nbr = va_arg(arg, unsigned int);
-		ft_nbrbase(data->nbr, data);
-	}
+		ft_nbrbase(va_arg(arg, unsigned int), data);
 	else if (*str == 'p')
 	{
 		data->nbr = va_arg(arg, long);
-		if(data->nbr == 0)
+		if (data->nbr == 0)
 			return (ft_putstr("(nil)", data));
-		ft_putstr("0x", data);
 		ft_nbrbase(data->nbr, data);
 	}
 }
@@ -91,24 +91,17 @@ int	ft_printf(const char *abc, ...)
 	va_start (argss, abc);
 	data.nbase = 16;
 	data.count = 0;
+	data.nbr = 0;
 	while (*abc)
 	{
-		if (*(abc+1) == '%' && *abc == '%')
+		if (*abc == '%' && *(abc + 1) == '%')
 			ft_putchar(*(++abc), &data);
 		else if (*abc == '%' && *(abc + 1) != '%')
 			ft_flags(++abc, argss, &data);
-		else if(*abc != '%')
+		else if (*abc != '%')
 			ft_putchar(*abc, &data);
 		abc++;
 	}
 	va_end(argss);
 	return (data.count);
-}
-
-#include<limits.h>
-
-int main(int argc, char const *argv[])
-{
-	ft_printf(" %p \n", -LONG_MAX);
-	printf(" %p \n", -LONG_MAX);
 }

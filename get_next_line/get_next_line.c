@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: breda-si <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 09:33:18 by marvin            #+#    #+#             */
-/*   Updated: 2023/10/24 12:06:34 by breda-si         ###   ########.fr       */
+/*   Created: 2023/10/24 16:53:16 by breda-si          #+#    #+#             */
+/*   Updated: 2023/10/24 17:20:39 by breda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include<unistd.h>
+#include<stdlib.h>
 
-# include <stdarg.h>
-# include <stdio.h>
-
-typedef struct s_dados
+char *get_next_line(int fd)
 {
-	int				count;
-	unsigned int	nbase;
-	char			*base;
-	char			flag;
-	long			nbr;
-}	t_dados;
+	read
+}
+int main()
+{
+	int fd;
 
-int	ft_printf(const char *abc, ...);
-
-#endif
+	fd = opem
+}
