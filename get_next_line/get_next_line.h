@@ -10,4 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef 
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <limits.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+
+size_t	ft_strlen(char *s);
+char	*ft_calloc(size_t nmemb, size_t size);
+size_t	ft_charf(char *s);
+char	*ft_strdup(char *s);
+char	*next_line(char *temp);
+char	*ft_get_line(char *temp);
+char	*ft_buffer(char *buffer, char *temp, size_t bit);
+char	*get_next_line(int fd);
+#endif
