@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: breda-si <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 23:28:28 by marvin            #+#    #+#             */
-/*   Updated: 2023/10/30 23:28:28 by marvin           ###   ########.fr       */
+/*   Updated: 2023/11/18 21:20:52 by breda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,7 @@ char	*ft_line(int fd)
 			free(buffer);
 			return (NULL);
 		}
-		tem
-		p = ft_buffer(buffer, temp, bit);
+		temp = ft_buffer(buffer, temp, bit);
 	}
 	if (bit == 0 && !buffer[0] && !temp)
 	{
