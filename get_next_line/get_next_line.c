@@ -15,7 +15,7 @@
 char	*ft_get_line(char *temp)
 {
 	size_t	size;
-	size_t	i;
+	size_t	i;                                                                                                                                                                                                                                                                                                                                       
 	char	*ret;
 
 	if (temp[0] == '\0')
@@ -87,8 +87,7 @@ char	*ft_line(int fd)
 			free(buffer);
 			return (NULL);
 		}
-		tem
-		p = ft_buffer(buffer, temp, bit);
+		temp = ft_buffer(buffer, temp, bit);
 	}
 	if (bit == 0 && !buffer[0] && !temp)
 	{
@@ -112,7 +111,7 @@ char	*get_next_line(int fd)
 	line = ft_line(fd);
 	return (line);
 }
-/*
+
 int main(int ac, char **av)
 {
 	char *a;
@@ -124,7 +123,14 @@ int main(int ac, char **av)
 	printf("%s", a);
 	free(a);	
 	close(fd);
+	fd = open(av[1], O_RDONLY);
+	a = get_next_line(fd);
+	printf("%s", a);
+	free(a);
+	a = get_next_line(fd);
+	printf("%s", a);
+	free(a);
 	
 	return 0;
 }
-*/
+
