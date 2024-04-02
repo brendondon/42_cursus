@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: breda-si <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 23:28:28 by marvin            #+#    #+#             */
-/*   Updated: 2023/11/18 21:48:11 by breda-si         ###   ########.fr       */
+/*   Created: 2023/11/18 21:48:26 by breda-si          #+#    #+#             */
+/*   Updated: 2023/11/18 22:11:16 by breda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_get_line(char *temp)
 {
 	size_t	size;
-	size_t	i;                                                                                                                                                                                                                                                                                                                                       
+	size_t	i;
 	char	*ret;
 
 	if (temp[0] == '\0')
@@ -90,39 +90,24 @@ char	*ft_line(int fd)
 {
 	int			bit;
 	char		*buffer;
-	static char	*temp = NULL;
+	static char	*temp[FOPEN_MAX];
 
 	bit = 1;
 	buffer = ft_calloc(sizeof(char), BUFFER_SIZE + 1);
 	if (!buffer)
 		return (NULL);
-<<<<<<< HEAD
-	while (bit > 0 && ft_charf(buffer) == 0 && ft_charf(temp) == 0)
-	{
-		bit = read(fd, buffer, BUFFER_SIZE);
-		if (bit == 0)
-			break ;
-		if (bit == -1)
-		{
-			free(buffer);
-			return (NULL);
-		}
-		temp = ft_buffer(buffer, temp, bit);
-	}
-=======
-	if (!ft_complete(&temp, &buffer, &bit, fd))
+	if (!ft_complete(&temp[fd], &buffer, &bit, fd))
 		return (NULL);
->>>>>>> 31064bbbd4e93f39ceebae75f1086352152e1dcb
-	if (bit == 0 && !buffer[0] && !temp)
+	if (bit == 0 && !buffer[0] && !temp[fd])
 	{
 		free(buffer);
 		return (NULL);
 	}
 	free(buffer);
-	buffer = ft_get_line(temp);
-	temp = next_line(temp);
-	if (!temp)
-		free(temp);
+	buffer = ft_get_line(temp[fd]);
+	temp[fd] = next_line(temp[fd]);
+	if (!temp[fd])
+		free(temp[fd]);
 	return (buffer);
 }
 
@@ -130,31 +115,8 @@ char	*get_next_line(int fd)
 {
 	char	*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX)
 		return (NULL);
 	line = ft_line(fd);
 	return (line);
 }
-
-int main(int ac, char **av)
-{
-	char *a;
-	int fd = open(av[1], O_RDONLY);
-	a = get_next_line(fd);
-	printf("%s", a);
-	free(a);
-	a = get_next_line(fd);
-	printf("%s", a);
-	free(a);	
-	close(fd);
-	fd = open(av[1], O_RDONLY);
-	a = get_next_line(fd);
-	printf("%s", a);
-	free(a);
-	a = get_next_line(fd);
-	printf("%s", a);
-	free(a);
-	
-	return 0;
-}
-
